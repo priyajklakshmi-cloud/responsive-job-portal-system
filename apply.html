@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Apply | CareerNest</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    font-family:Arial,sans-serif;
+    background:#f6f4ef;
+    color:#202731;
+}
+
+.layout{
+    min-height:100vh;
+    display:flex;
+}
+
+.sidebar{
+    width:240px;
+    background:#17202a;
+    color:white;
+    padding:28px 18px;
+    position:fixed;
+    top:0;
+    bottom:0;
+    left:0;
+}
+
+.logo{
+    font-size:27px;
+    font-weight:bold;
+    padding:0 15px 45px;
+}
+
+.logo span{
+    color:#a999ff;
+}
+
+.menu-title{
+    color:#7f8994;
+    font-size:10px;
+    letter-spacing:2px;
+    padding:0 15px 12px;
+    font-weight:bold;
+}
+
+.menu a{
+    display:block;
+    color:#c3cad1;
+    text-decoration:none;
+    padding:14px 15px;
+    margin:5px 0;
+    border-radius:9px;
+    font-size:14px;
+}
+
+.menu a:hover,
+.menu a.active{
+    background:#2d3947;
+    color:white;
+}
+
+.logout{
+    position:absolute;
+    bottom:25px;
+    left:18px;
+    right:18px;
+}
+
+.main{
+    margin-left:240px;
+    width:calc(100% - 240px);
+    padding:45px;
+}
+
+.back{
+    color:#7657e8;
+    text-decoration:none;
+    font-size:13px;
+}
+
+.small{
+    color:#7657e8;
+    font-size:11px;
+    letter-spacing:2px;
+    font-weight:bold;
+    margin-top:25px;
+}
+
+h1{
+    font-size:38px;
+    margin:8px 0;
+}
+
+.subtitle{
+    color:#777;
+    margin-bottom:30px;
+}
+
+.form{
+    max-width:850px;
+}
+
+.section{
+    background:white;
+    border:1px solid #e4e1db;
+    border-radius:16px;
+    padding:28px;
+    margin-bottom:18px;
+}
+
+.section h2{
+    font-size:19px;
+    margin-bottom:20px;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:0 20px;
+}
+
+label{
+    display:block;
+    font-size:13px;
+    font-weight:bold;
+    margin:16px 0 7px;
+}
+
+input,select,textarea{
+    width:100%;
+    padding:13px;
+    border:1px solid #ddd;
+    border-radius:9px;
+    outline:none;
+    font-family:Arial;
+}
+
+input:focus,
+select:focus,
+textarea:focus{
+    border-color:#7657e8;
+}
+
+textarea{
+    resize:vertical;
+}
+
+.submit{
+    width:100%;
+    border:0;
+    border-radius:9px;
+    padding:15px;
+    background:#7657e8;
+    color:white;
+    font-weight:bold;
+    cursor:pointer;
+    font-size:14px;
+}
+
+.submit:hover{
+    background:#6044cf;
+}
+
+.success{
+    text-align:center;
+    color:#2f9e72;
+    font-weight:bold;
+    margin-top:15px;
+}
+
+.job-preview{
+    background:#f0edff;
+    border:1px solid #ddd5ff;
+    border-radius:12px;
+    padding:18px;
+    margin-bottom:20px;
+}
+
+.job-preview h3{
+    color:#7657e8;
+    margin-bottom:5px;
+}
+
+.job-preview p{
+    color:#666;
+    font-size:13px;
+}
+
+@media(max-width:800px){
+
+    .sidebar{
+        width:75px;
+        padding:25px 8px;
+    }
+
+    .logo{
+        font-size:0;
+        text-align:center;
+        padding:0 0 40px;
+    }
+
+    .logo:after{
+        content:"CN";
+        font-size:18px;
+    }
+
+    .menu-title{
+        display:none;
+    }
+
+    .menu a{
+        font-size:0;
+        text-align:center;
+    }
+
+    .main{
+        margin-left:75px;
+        width:calc(100% - 75px);
+        padding:25px 18px;
+    }
+
+    .grid{
+        grid-template-columns:1fr;
+    }
+
+    h1{
+        font-size:30px;
+    }
+}
+</style>
+</head>
+
+
+<body>
+
+<div class="layout">
+
+<aside class="sidebar">
+
+<div class="logo">
+Career<span>Nest</span>
+</div>
+
+<div class="menu-title">MAIN MENU</div>
+
+<div class="menu">
+
+<a href="dashboard.html">🏠 Dashboard</a>
+
+<a href="search-jobs.html">🔎 Search Jobs</a>
+
+<a href="apply.html" class="active">📝 Apply for Job</a>
+
+<a href="saved.html">💾 Saved Jobs</a>
+
+<a href="views.html">👁 My Requests</a>
+
+</div>
+
+<a href="index.html" class="menu logout">
+↩ Logout
+</a>
+
+</aside>
+
+
+<main class="main">
+
+<a href="dashboard.html" class="back">
+← Back to Dashboard
+</a>
+
+<div class="small">APPLICATION CENTER</div>
+
+<h1>Apply for a Job</h1>
+
+<p class="subtitle">
+Complete your details and send your application.
+</p>
+
+
+<div id="jobPreview"></div>
+
+
+<form id="applyForm" class="form">
+
+<div class="section">
+
+<h2>Personal Information</h2>
+
+<div class="grid">
+
+<div>
+
+<label>Full Name</label>
+
+<input
+type="text"
+id="name"
+placeholder="Enter your full name"
+required>
+
+</div>
+
+
+<div>
+
+<label>Email Address</label>
+
+<input
+type="email"
+id="email"
+placeholder="Enter your email"
+required>
+
+</div>
+
+
+<div>
+
+<label>Phone Number</label>
+
+<input
+type="tel"
+id="phone"
+placeholder="Enter phone number"
+required>
+
+</div>
+
+
+<div>
+
+<label>Qualification</label>
+
+<input
+type="text"
+id="qualification"
+placeholder="Example: B.E CSE"
+required>
+
+</div>
+
+</div>
+
+
+<label>Skills</label>
+
+<input
+type="text"
+id="skills"
+placeholder="Java, Python, HTML, CSS..."
+required>
+
+
+<label>Why should we hire you?</label>
+
+<textarea
+id="message"
+rows="5"
+placeholder="Write a short introduction..."
+required></textarea>
+
+</div>
+
+
+<button class="submit" type="submit">
+Submit Application →
+</button>
+
+<div id="success" class="success"></div>
+
+</form>
+
+</main>
+
+</div>
+
+
+<script>
+
+const jobs={
+
+1:{
+title:"Software Developer",
+company:"TechNova Solutions",
+location:"Chennai",
+salary:"₹6L – ₹10L / year"
+},
+
+2:{
+title:"Frontend Developer",
+company:"PixelWorks",
+location:"Remote",
+salary:"₹5L – ₹8L / year"
+},
+
+3:{
+title:"Java Developer",
+company:"CloudMatrix",
+location:"Bangalore",
+salary:"₹7L – ₹12L / year"
+},
+
+4:{
+title:"Data Analyst",
+company:"Insight Labs",
+location:"Hyderabad",
+salary:"₹5L – ₹9L / year"
+},
+
+5:{
+title:"Web Developer Intern",
+company:"InnovateHub",
+location:"Chennai",
+salary:"₹15K – ₹25K / month"
+},
+
+6:{
+title:"Python Developer",
+company:"NextGen Technologies",
+location:"Remote",
+salary:"₹6L – ₹11L / year"
+}
+
+};
+
+
+const selected=
+localStorage.getItem("selectedJob");
+
+
+const preview=
+document.getElementById("jobPreview");
+
+
+if(selected && jobs[selected]){
+
+const job=jobs[selected];
+
+preview.innerHTML=`
+
+<div class="job-preview">
+
+<h3>${job.title}</h3>
+
+<p>
+${job.company} · ${job.location}
+</p>
+
+<p>
+${job.salary}
+</p>
+
+</div>
+
+`;
+
+}else{
+
+preview.innerHTML=`
+
+<div class="job-preview">
+
+<h3>Select a job from Search Jobs</h3>
+
+<p>
+Go to Search Jobs and click Apply Now.
+</p>
+
+</div>
+
+`;
+
+}
+
+
+document
+.getElementById("applyForm")
+.addEventListener("submit",function(e){
+
+e.preventDefault();
+
+if(!selected || !jobs[selected]){
+
+alert("Please select a job from Search Jobs first.");
+
+return;
+
+}
+
+
+const job=jobs[selected];
+
+
+const application={
+
+id:Date.now(),
+
+title:job.title,
+
+company:job.company,
+
+location:job.location,
+
+salary:job.salary,
+
+name:document.getElementById("name").value,
+
+email:document.getElementById("email").value,
+
+phone:document.getElementById("phone").value,
+
+qualification:
+document.getElementById("qualification").value,
+
+skills:
+document.getElementById("skills").value,
+
+message:
+document.getElementById("message").value,
+
+status:"Application Sent",
+
+date:new Date().toLocaleDateString()
+
+};
+
+
+let applications=
+JSON.parse(localStorage.getItem("applications")) || [];
+
+
+applications.push(application);
+
+
+localStorage.setItem(
+"applications",
+JSON.stringify(applications)
+);
+
+
+document.getElementById("success").textContent=
+"✓ Application sent successfully to "+job.company+"!";
+
+
+this.reset();
+
+});
+
+</script>
+
+</body>
+</html>

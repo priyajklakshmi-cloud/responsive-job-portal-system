@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | CareerNest</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            min-height: 100vh;
+            background: #17202a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .login-container {
+            width: 900px;
+            max-width: 94%;
+            min-height: 560px;
+            display: grid;
+            grid-template-columns: 45% 55%;
+            background: white;
+            border-radius: 22px;
+            overflow: hidden;
+            box-shadow: 0 25px 70px rgba(0,0,0,0.35);
+        }
+
+        .left {
+            background: linear-gradient(145deg, #292342, #7657e8);
+            color: white;
+            padding: 55px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .logo {
+            font-size: 30px;
+            font-weight: bold;
+            margin-bottom: 60px;
+        }
+
+        .logo span {
+            color: #d9d1ff;
+        }
+
+        .left h1 {
+            font-size: 38px;
+            line-height: 1.15;
+            margin-bottom: 18px;
+        }
+
+        .left p {
+            color: #e4e0f5;
+            line-height: 1.7;
+            margin-bottom: 25px;
+        }
+
+        .points div {
+            margin: 14px 0;
+            font-size: 14px;
+        }
+
+        .right {
+            padding: 55px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .back {
+            color: #7657e8;
+            text-decoration: none;
+            font-size: 13px;
+            margin-bottom: 35px;
+        }
+
+        .icon {
+            width: 55px;
+            height: 55px;
+            border-radius: 14px;
+            background: #eeeaff;
+            color: #7657e8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .right h2 {
+            font-size: 32px;
+            color: #17202a;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            color: #777;
+            font-size: 14px;
+            margin-bottom: 30px;
+        }
+
+        label {
+            display: block;
+            font-size: 13px;
+            font-weight: bold;
+            margin-bottom: 7px;
+            color: #303740;
+        }
+
+        input {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #ddd;
+            border-radius: 9px;
+            margin-bottom: 18px;
+            font-size: 14px;
+            outline: none;
+        }
+
+        input:focus {
+            border-color: #7657e8;
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 9px;
+            background: #7657e8;
+            color: white;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #6044cf;
+        }
+
+        .demo {
+            text-align: center;
+            color: #888;
+            font-size: 11px;
+            margin-top: 18px;
+        }
+
+        @media(max-width: 700px) {
+            .login-container {
+                grid-template-columns: 1fr;
+            }
+
+            .left {
+                padding: 35px;
+            }
+
+            .left h1 {
+                font-size: 28px;
+            }
+
+            .logo {
+                margin-bottom: 25px;
+            }
+
+            .right {
+                padding: 35px;
+            }
+
+            .points {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="login-container">
+
+    <div class="left">
+
+        <div class="logo">
+            Career<span>Nest</span>
+        </div>
+
+        <h1>Build your career.<br>Find your opportunity.</h1>
+
+        <p>
+            Discover suitable jobs, apply easily and track
+            your applications from one place.
+        </p>
+
+        <div class="points">
+            <div>✓ Search relevant jobs</div>
+            <div>✓ Apply to companies</div>
+            <div>✓ Save interesting jobs</div>
+            <div>✓ Track your requests</div>
+        </div>
+
+    </div>
+
+
+    <div class="right">
+
+        <a href="index.html" class="back">
+            ← Back to Home
+        </a>
+
+        <div class="icon">CN</div>
+
+        <h2>Welcome back</h2>
+
+        <p class="subtitle">
+            Sign in to continue your career journey.
+        </p>
+
+        <!-- IMPORTANT:
+             Any email and any password will work.
+             Form directly opens dashboard.html.
+        -->
+
+        <form action="dashboard.html" method="get">
+
+            <label>Email Address</label>
+
+            <input
+                type="text"
+                name="email"
+                placeholder="Enter any email"
+                required
+            >
+
+            <label>Password</label>
+
+            <input
+                type="password"
+                name="password"
+                placeholder="Enter any password"
+                required
+            >
+
+            <button type="submit">
+                Sign In →
+            </button>
+
+        </form>
+
+        <p class="demo">
+            Demo mode • Any email and password can be used
+        </p>
+
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Saved Jobs | CareerNest</title>
+
+<style>
+
+*{
+box-sizing:border-box;
+margin:0;
+padding:0;
+}
+
+body{
+font-family:Arial,sans-serif;
+background:#f6f4ef;
+color:#202731;
+}
+
+.layout{
+min-height:100vh;
+display:flex;
+}
+
+.sidebar{
+width:240px;
+background:#17202a;
+color:white;
+padding:28px 18px;
+position:fixed;
+top:0;
+bottom:0;
+left:0;
+}
+
+.logo{
+font-size:27px;
+font-weight:bold;
+padding:0 15px 45px;
+}
+
+.logo span{
+color:#a999ff;
+}
+
+.menu-title{
+color:#7f8994;
+font-size:10px;
+letter-spacing:2px;
+padding:0 15px 12px;
+font-weight:bold;
+}
+
+.menu a{
+display:block;
+color:#c3cad1;
+text-decoration:none;
+padding:14px 15px;
+margin:5px 0;
+border-radius:9px;
+font-size:14px;
+}
+
+.menu a:hover,
+.menu a.active{
+background:#2d3947;
+color:white;
+}
+
+.logout{
+position:absolute;
+bottom:25px;
+left:18px;
+right:18px;
+}
+
+.main{
+margin-left:240px;
+width:calc(100% - 240px);
+padding:45px;
+}
+
+.back{
+color:#7657e8;
+text-decoration:none;
+font-size:13px;
+}
+
+.small{
+color:#7657e8;
+font-size:11px;
+letter-spacing:2px;
+font-weight:bold;
+margin-top:25px;
+}
+
+h1{
+font-size:38px;
+margin:8px 0;
+}
+
+.subtitle{
+color:#777;
+margin-bottom:30px;
+}
+
+.saved-list{
+display:grid;
+gap:16px;
+}
+
+.job{
+background:white;
+border:1px solid #e4e1db;
+border-radius:16px;
+padding:25px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:20px;
+}
+
+.job h2{
+font-size:20px;
+margin-bottom:5px;
+}
+
+.company{
+color:#7657e8;
+font-size:13px;
+font-weight:bold;
+}
+
+.meta{
+display:flex;
+gap:8px;
+flex-wrap:wrap;
+margin:13px 0;
+}
+
+.meta span{
+background:#f0eeea;
+padding:6px 10px;
+border-radius:5px;
+font-size:11px;
+color:#666;
+}
+
+.salary{
+font-size:13px;
+font-weight:bold;
+}
+
+.buttons{
+display:flex;
+flex-direction:column;
+gap:9px;
+min-width:125px;
+}
+
+.buttons a,
+.buttons button{
+text-decoration:none;
+border:0;
+border-radius:8px;
+padding:10px;
+text-align:center;
+font-size:12px;
+font-weight:bold;
+cursor:pointer;
+}
+
+.apply{
+background:#17202a;
+color:white;
+}
+
+.remove{
+background:#eeeaff;
+color:#7657e8;
+}
+
+.empty{
+background:white;
+border:1px solid #e4e1db;
+border-radius:16px;
+padding:65px 30px;
+text-align:center;
+}
+
+.empty-icon{
+font-size:45px;
+margin-bottom:15px;
+}
+
+.empty h2{
+margin-bottom:8px;
+}
+
+.empty p{
+color:#777;
+margin-bottom:20px;
+}
+
+.search-link{
+display:inline-block;
+background:#7657e8;
+color:white;
+padding:12px 20px;
+border-radius:8px;
+text-decoration:none;
+font-size:13px;
+font-weight:bold;
+}
+
+@media(max-width:800px){
+
+.sidebar{
+width:75px;
+padding:25px 8px;
+}
+
+.logo{
+font-size:0;
+text-align:center;
+padding:0 0 40px;
+}
+
+.logo:after{
+content:"CN";
+font-size:18px;
+}
+
+.menu-title{
+display:none;
+}
+
+.menu a{
+font-size:0;
+text-align:center;
+}
+
+.main{
+margin-left:75px;
+width:calc(100% - 75px);
+padding:25px 18px;
+}
+
+.job{
+flex-direction:column;
+align-items:flex-start;
+}
+
+.buttons{
+flex-direction:row;
+width:100%;
+}
+
+.buttons a,
+.buttons button{
+flex:1;
+}
+
+h1{
+font-size:30px;
+}
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+<div class="layout">
+
+<aside class="sidebar">
+
+<div class="logo">
+Career<span>Nest</span>
+</div>
+
+<div class="menu-title">
+MAIN MENU
+</div>
+
+<div class="menu">
+
+<a href="dashboard.html">
+🏠 Dashboard
+</a>
+
+<a href="search-jobs.html">
+🔎 Search Jobs
+</a>
+
+<a href="apply.html">
+📝 Apply for Job
+</a>
+
+<a href="saved.html" class="active">
+💾 Saved Jobs
+</a>
+
+<a href="views.html">
+👁 My Requests
+</a>
+
+</div>
+
+<a href="index.html" class="menu logout">
+↩ Logout
+</a>
+
+</aside>
+
+
+<main class="main">
+
+<a href="dashboard.html" class="back">
+← Back to Dashboard
+</a>
+
+<div class="small">
+YOUR COLLECTION
+</div>
+
+<h1>Saved Jobs</h1>
+
+<p class="subtitle">
+Keep interesting opportunities here and apply whenever you're ready.
+</p>
+
+
+<div id="savedList" class="saved-list"></div>
+
+</main>
+
+</div>
+
+
+<script>
+
+const jobs={
+
+1:{
+title:"Software Developer",
+company:"TechNova Solutions",
+location:"Chennai",
+type:"Full Time",
+mode:"Hybrid",
+salary:"₹6L – ₹10L / year"
+},
+
+2:{
+title:"Frontend Developer",
+company:"PixelWorks",
+location:"Remote",
+type:"Full Time",
+mode:"Remote",
+salary:"₹5L – ₹8L / year"
+},
+
+3:{
+title:"Java Developer",
+company:"CloudMatrix",
+location:"Bangalore",
+type:"Full Time",
+mode:"Hybrid",
+salary:"₹7L – ₹12L / year"
+},
+
+4:{
+title:"Data Analyst",
+company:"Insight Labs",
+location:"Hyderabad",
+type:"Full Time",
+mode:"Office",
+salary:"₹5L – ₹9L / year"
+},
+
+5:{
+title:"Web Developer Intern",
+company:"InnovateHub",
+location:"Chennai",
+type:"Internship",
+mode:"Hybrid",
+salary:"₹15K – ₹25K / month"
+},
+
+6:{
+title:"Python Developer",
+company:"NextGen Technologies",
+location:"Remote",
+type:"Full Time",
+mode:"Remote",
+salary:"₹6L – ₹11L / year"
+}
+
+};
+
+
+function displaySaved(){
+
+const container=
+document.getElementById("savedList");
+
+const saved=
+JSON.parse(localStorage.getItem("savedJobs")) || [];
+
+
+if(saved.length===0){
+
+container.innerHTML=`
+
+<div class="empty">
+
+<div class="empty-icon">♡</div>
+
+<h2>No Saved Jobs Yet</h2>
+
+<p>
+Search for jobs and save interesting opportunities here.
+</p>
+
+<a href="search-jobs.html" class="search-link">
+Search Jobs →
+</a>
+
+</div>
+
+`;
+
+return;
+
+}
+
+
+container.innerHTML=saved
+.map(id=>{
+
+const job=jobs[id];
+
+if(!job)return"";
+
+
+return`
+
+<div class="job">
+
+<div>
+
+<h2>${job.title}</h2>
+
+<div class="company">
+${job.company}
+</div>
+
+<div class="meta">
+
+<span>📍 ${job.location}</span>
+
+<span>${job.type}</span>
+
+<span>${job.mode}</span>
+
+</div>
+
+<div class="salary">
+${job.salary}
+</div>
+
+</div>
+
+
+<div class="buttons">
+
+<a
+href="apply.html"
+class="apply"
+onclick="selectJob(${id})">
+Apply Now
+</a>
+
+<button
+class="remove"
+onclick="removeJob(${id})">
+Remove
+</button>
+
+</div>
+
+</div>
+
+`;
+
+}).join("");
+
+}
+
+
+function selectJob(id){
+
+localStorage.setItem(
+"selectedJob",
+id
+);
+
+}
+
+
+function removeJob(id){
+
+let saved=
+JSON.parse(localStorage.getItem("savedJobs")) || [];
+
+saved=saved.filter(item=>item!==id);
+
+localStorage.setItem(
+"savedJobs",
+JSON.stringify(saved)
+);
+
+displaySaved();
+
+}
+
+
+displaySaved();
+
+</script>
+
+</body>
+</html>
